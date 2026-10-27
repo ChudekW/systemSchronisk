@@ -11,6 +11,14 @@ export type User = {
 };
 
 export type Auth = {
+    canManageOrganizations: boolean;
+    canManageOrganization: boolean;
+    organization: {
+        id: number;
+        name: string;
+        shelter_name: string;
+        is_active: boolean;
+    } | null;
     user: User;
 };
 

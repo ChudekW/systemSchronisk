@@ -80,9 +80,9 @@ Panel webowy jest przeznaczony dla administracji organizacji, pracowników, koor
 
 Rekomendowany stack:
 
-- Laravel Blade;
-- Livewire;
-- Alpine.js;
+- Vue 3 + TypeScript;
+- Inertia.js 3;
+- Laravel Vue Starter Kit;
 - Tailwind CSS;
 - własny system komponentów UI.
 
@@ -128,7 +128,7 @@ Portal publiczny prezentuje:
 - informacje o darowiznach;
 - aktualności i wydarzenia.
 
-Na początku portal może działać w Laravelu z Blade i Livewire. Oddzielny frontend, np. Next.js, można wprowadzić później, jeśli wzrośnie ruch lub wymagania SEO.
+Na początku portal działa w tej samej aplikacji Laravel + Vue + Inertia. SSR można włączyć dla potrzeb SEO. Oddzielny frontend, np. Next.js, można wprowadzić później, jeśli wzrośnie ruch lub wymagania SEO.
 
 ## 5. Proponowany stack technologiczny
 
@@ -136,7 +136,7 @@ Na początku portal może działać w Laravelu z Blade i Livewire. Oddzielny fro
 |---|---|
 | Backend | Laravel 13 |
 | PHP | PHP 8.5 |
-| Panel webowy | Blade + Livewire + Alpine.js |
+| Panel webowy | Vue 3 + Inertia.js 3 + TypeScript |
 | Style | Tailwind CSS |
 | API | Laravel REST API + Sanctum |
 | Baza danych | PostgreSQL |
@@ -600,7 +600,7 @@ Najlepsza architektura dla pierwszej wersji to:
 Laravel 13 + PHP 8.5
 PostgreSQL + PostGIS
 Redis + Horizon
-Livewire + Blade + Tailwind
+Vue 3 + Inertia.js 3 + Tailwind CSS 4
 Laravel Sanctum REST API
 Flutter Android/iOS
 Docker Compose
@@ -611,3 +611,19 @@ Sentry + Laravel Pulse
 
 System powinien rozpocząć jako modularny monolit Laravel. Zapewni to szybki rozwój, prostsze wdrożenie i łatwe utrzymanie, jednocześnie pozostawiając możliwość późniejszego wydzielenia wybranych modułów.
 
+
+## 21. Wdrożony fundament organizacji
+
+Panel webowy pozostaje na Vue 3, Inertia 3, Tailwind 4 i istniejących komponentach Reka UI. Logika biznesowa i autoryzacja są po stronie Laravel. API mobilne będzie osobnym interfejsem do tej samej logiki, bez wymogu przepisywania panelu na klienta REST.
+
+Organizacje tworzy wyłącznie superadministrator platformy. Uprawnienie `users.is_super_admin` jest nadawane jawnie poleceniem `app:promote-platform-administrator`; adres e-mail nie jest regułą autoryzacji. Pierwszym wskazanym zarządcą jest konto `admin@dev10.pro`.
+
+W aktualnym etapie użytkownik należy do jednej organizacji (`users.organization_id`) albo nie ma przypisania. Administrator organizacji ma dodatkowo `is_organization_admin`. Przynależność i role nie są dostępne w formularzu rejestracji ani aktualizacji profilu. Publiczna rejestracja nie nadaje dostępu do organizacji.
+
+Utworzenie organizacji i jej administratora odbywa się transakcyjnie. Zarządca podaje nazwę, dane schroniska, e-mail administratora i hasło startowe. Hasło jest hashowane i nie jest zwracane w odpowiedzi. Administrator potwierdza adres e-mail standardowym mechanizmem Fortify. Dane dostępowe przekazuje zarządca bezpiecznym kanałem; aplikacja nie wysyła hasła e-mailem.
+
+Organizacja zawiera na razie dane jednego schroniska (`shelter_name`, adres i kontakt). Oddzielne placówki, zarządzanie pracownikami i zwierzęta są kolejnymi modułami. Każdy przyszły rekord biznesowy musi być przypisany do organizacji i objęty kontrolą dostępu.
+
+Panel platformy `/organizations` wymaga uprawnienia `manage-organizations`. Panel tenantowy `/organization` pobiera organizację wyłącznie z zalogowanego użytkownika; nie przyjmuje identyfikatora tenanta z formularza. Administrator organizacji nie może zmieniać aktywności organizacji ani własnych uprawnień. Wyłączenie organizacji blokuje dostęp do jej panelu; konto użytkownika i jego ustawienia pozostają dostępne.
+
+Model członkostwa wielu organizacji, osobne role pracowników, historia audytowa i kolejne moduły są docelowym rozszerzeniem, a nie częścią obecnego wdrożenia.

@@ -39,6 +39,10 @@ return [
         'password' => ['confirmed' => 'Wpisane hasła muszą być takie same.'],
     ],
     'attributes' => [
+        'shelter_name' => 'nazwa schroniska',
+        'admin_name' => 'imię i nazwisko administratora',
+        'admin_email' => 'adres e-mail administratora',
+        'admin_password' => 'hasło administratora',
         'name' => 'imię i nazwisko',
         'email' => 'adres e-mail',
         'password' => 'hasło',

@@ -20,7 +20,9 @@ Projekt powinien być rozwijany etapami. Pierwsza wersja ma rozwiązać podstawo
 ## Etap 1 — fundament systemu
 
 - rejestracja i logowanie;
-- organizacje i schroniska;
+- organizacje i schroniska zakładane przez superadministratora;
+- startowe konto administratora każdej organizacji;
+- panel Vue + Inertia z izolacją danych organizacji;
 - role i uprawnienia;
 - profile użytkowników;
 - konfiguracja schroniska;

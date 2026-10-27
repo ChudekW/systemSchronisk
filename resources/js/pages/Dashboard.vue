@@ -46,6 +46,24 @@ const accountLinks = [
         class="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-10"
     >
         <Head title="Przegląd" />
+        <div
+            v-if="$page.props.auth.organization"
+            class="rounded-xl bg-accent p-4 text-sm"
+        >
+            <p class="font-semibold">
+                {{ $page.props.auth.organization.name }}
+            </p>
+            <p class="text-muted-foreground">
+                {{ $page.props.auth.organization.shelter_name }}
+            </p>
+            <p
+                v-if="!$page.props.auth.organization.is_active"
+                class="mt-2 text-destructive"
+            >
+                Dostęp do organizacji jest wyłączony. Skontaktuj się z
+                administratorem platformy.
+            </p>
+        </div>
         <header class="space-y-2">
             <p class="text-sm font-medium text-primary">
                 Twoja przestrzeń w ŁapaRazem
