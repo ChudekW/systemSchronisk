@@ -22,7 +22,10 @@ void createInertiaApp({
         }
     },
     defaults: {
-        visitOptions: () => ({ viewTransition: true }),
+        visitOptions: (_href, options) => ({
+            viewTransition:
+                (options.method ?? 'get') === 'get' && !options.async,
+        }),
     },
     withApp: (app) => {
         app.directive('focus', {

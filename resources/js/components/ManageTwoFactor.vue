@@ -56,6 +56,7 @@ onUnmounted(() => clearTwoFactorAuthData());
                 <Form
                     v-else
                     v-bind="enable.form()"
+                    :options="{ viewTransition: false }"
                     @success="showSetupModal = true"
                     #default="{ processing }"
                 >
@@ -73,7 +74,11 @@ onUnmounted(() => clearTwoFactorAuthData());
             </p>
 
             <div class="relative inline">
-                <Form v-bind="disable.form()" #default="{ processing }">
+                <Form
+                    v-bind="disable.form()"
+                    :options="{ viewTransition: false }"
+                    #default="{ processing }"
+                >
                     <Button
                         variant="destructive"
                         type="submit"

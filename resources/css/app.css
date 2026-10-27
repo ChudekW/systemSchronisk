@@ -200,6 +200,7 @@
 
 /* Keep the application shell still while the next page comes into view. */
 .page-transition-content {
+    isolation: isolate;
     view-transition-name: page-content;
 }
 

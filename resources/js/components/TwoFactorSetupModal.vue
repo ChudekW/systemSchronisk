@@ -247,6 +247,7 @@ watch(
                 <template v-else>
                     <Form
                         v-bind="confirm.form()"
+                        :options="{ viewTransition: false }"
                         error-bag="confirmTwoFactorAuthentication"
                         reset-on-error
                         @finish="code = ''"
