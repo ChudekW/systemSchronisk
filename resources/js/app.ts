@@ -21,6 +21,9 @@ void createInertiaApp({
                 return AppLayout;
         }
     },
+    defaults: {
+        visitOptions: () => ({ viewTransition: true }),
+    },
     withApp: (app) => {
         app.directive('focus', {
             mounted: (el: HTMLElement, shouldFocus) => {
@@ -31,7 +34,9 @@ void createInertiaApp({
         });
     },
     progress: {
-        color: '#4B5563',
+        color: 'var(--primary)',
+        delay: 180,
+        showSpinner: false,
     },
 });
 

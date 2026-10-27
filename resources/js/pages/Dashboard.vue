@@ -1,47 +1,129 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
-import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import { Head, Link } from '@inertiajs/vue3';
+import {
+    ArrowRight,
+    Palette,
+    PawPrint,
+    ShieldCheck,
+    UserRound,
+} from '@lucide/vue';
+import { Card } from '@/components/ui/card';
 import { dashboard } from '@/routes';
+import { edit as editAppearance } from '@/routes/appearance';
+import { edit as editProfile } from '@/routes/profile';
+import { edit as editSecurity } from '@/routes/security';
 
 defineOptions({
     layout: {
-        breadcrumbs: [
-            {
-                title: 'Dashboard',
-                href: dashboard(),
-            },
-        ],
+        breadcrumbs: [{ title: 'Przegląd', href: dashboard() }],
     },
 });
+
+const accountLinks = [
+    {
+        title: 'Twój profil',
+        description: 'Sprawdź swoje dane i adres e-mail.',
+        href: editProfile(),
+        icon: UserRound,
+    },
+    {
+        title: 'Bezpieczeństwo',
+        description: 'Zadbaj o bezpieczny dostęp do konta.',
+        href: editSecurity(),
+        icon: ShieldCheck,
+    },
+    {
+        title: 'Wygląd aplikacji',
+        description: 'Wybierz jasny, ciemny lub systemowy motyw.',
+        href: editAppearance(),
+        icon: Palette,
+    },
+];
 </script>
 
 <template>
-    <Head title="Dashboard" />
-
     <div
-        class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
+        class="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-10"
     >
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div
-                class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-            >
-                <PlaceholderPattern />
-            </div>
-            <div
-                class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-            >
-                <PlaceholderPattern />
-            </div>
-            <div
-                class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-            >
-                <PlaceholderPattern />
-            </div>
-        </div>
-        <div
-            class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
+        <Head title="Przegląd" />
+        <header class="space-y-2">
+            <p class="text-sm font-medium text-primary">
+                Twoja przestrzeń w ŁapaRazem
+            </p>
+            <h1 class="text-3xl font-bold tracking-tight">
+                Dobrze Cię widzieć.
+            </h1>
+            <p class="max-w-2xl leading-relaxed text-muted-foreground">
+                Wszystko dla lepszego życia zwierząt zaczyna się od wspólnego
+                działania.
+            </p>
+        </header>
+
+        <section
+            aria-labelledby="workspace-title"
+            class="flex items-start gap-4 rounded-2xl bg-accent/70 p-5 sm:p-6"
         >
-            <PlaceholderPattern />
-        </div>
+            <span
+                class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-card/80 text-primary"
+            >
+                <PawPrint class="size-6" aria-hidden="true" />
+            </span>
+            <div class="max-w-2xl space-y-2">
+                <h2 id="workspace-title" class="text-lg font-bold">
+                    Miejsce na codzienną pomoc
+                </h2>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                    Moduły zwierząt, zadań i adopcji są w przygotowaniu. Już
+                    teraz możesz zadbać o swój profil i ustawienia konta.
+                </p>
+            </div>
+        </section>
+
+        <section aria-labelledby="account-title" class="space-y-4">
+            <div class="space-y-1">
+                <h2 id="account-title" class="text-xl font-bold">
+                    Twoje konto
+                </h2>
+                <p class="text-sm text-muted-foreground">
+                    Dane, bezpieczeństwo i wygoda pracy — w jednym miejscu.
+                </p>
+            </div>
+            <div class="grid gap-4 lg:grid-cols-3">
+                <Link
+                    v-for="item in accountLinks"
+                    :key="item.title"
+                    :href="item.href"
+                    class="group block rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                >
+                    <Card
+                        class="h-full gap-3 rounded-2xl p-5 shadow-none transition-colors duration-150 group-hover:border-primary/40 group-hover:bg-accent/30 motion-reduce:transition-none"
+                    >
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="flex size-10 shrink-0 items-center justify-center rounded-xl bg-accent text-primary"
+                            >
+                                <component
+                                    :is="item.icon"
+                                    class="size-5"
+                                    aria-hidden="true"
+                                />
+                            </span>
+                            <h3 class="flex-1 text-base font-bold">
+                                {{ item.title }}
+                            </h3>
+                            <ArrowRight
+                                class="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary motion-reduce:transition-none"
+                                aria-hidden="true"
+                            />
+                        </div>
+                        <p
+                            class="text-sm leading-relaxed text-muted-foreground"
+                        >
+                            {{ item.description }}
+                        </p>
+                    </Card>
+                </Link>
+            </div>
+        </section>
     </div>
 </template>
