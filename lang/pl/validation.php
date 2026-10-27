@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'accepted' => 'Zaakceptuj pole :attribute.',
+    'array' => 'Pole :attribute musi być listą.',
+    'boolean' => 'Pole :attribute musi mieć wartość tak lub nie.',
+    'confirmed' => 'Potwierdzenie pola :attribute nie jest zgodne.',
+    'current_password' => 'Obecne hasło jest nieprawidłowe.',
+    'email' => 'Wpisz poprawny adres e-mail.',
+    'exists' => 'Wybrana wartość pola :attribute jest nieprawidłowa.',
+    'in' => 'Wybrana wartość pola :attribute jest nieprawidłowa.',
+    'integer' => 'Pole :attribute musi być liczbą całkowitą.',
+    'numeric' => 'Pole :attribute musi być liczbą.',
+    'regex' => 'Pole :attribute ma nieprawidłowy format.',
+    'required' => 'Uzupełnij pole :attribute.',
+    'string' => 'Pole :attribute musi być tekstem.',
+    'unique' => 'Podana wartość pola :attribute jest już używana.',
+    'max' => [
+        'array' => 'Pole :attribute może zawierać najwyżej :max elementów.',
+        'file' => 'Plik :attribute może mieć najwyżej :max KB.',
+        'numeric' => 'Pole :attribute nie może być większe niż :max.',
+        'string' => 'Pole :attribute może mieć najwyżej :max znaków.',
+    ],
+    'min' => [
+        'array' => 'Pole :attribute musi zawierać co najmniej :min elementów.',
+        'file' => 'Plik :attribute musi mieć co najmniej :min KB.',
+        'numeric' => 'Pole :attribute nie może być mniejsze niż :min.',
+        'string' => 'Pole :attribute musi mieć co najmniej :min znaków.',
+    ],
+    'password' => [
+        'letters' => 'Hasło musi zawierać co najmniej jedną literę.',
+        'mixed' => 'Hasło musi zawierać małą i wielką literę.',
+        'numbers' => 'Hasło musi zawierać co najmniej jedną cyfrę.',
+        'symbols' => 'Hasło musi zawierać co najmniej jeden znak specjalny.',
+        'uncompromised' => 'To hasło pojawiło się w wycieku danych. Wybierz inne hasło.',
+    ],
+    'custom' => [
+        'email' => ['unique' => 'Konto z tym adresem e-mail już istnieje.'],
+        'password' => ['confirmed' => 'Wpisane hasła muszą być takie same.'],
+    ],
+    'attributes' => [
+        'name' => 'imię i nazwisko',
+        'email' => 'adres e-mail',
+        'password' => 'hasło',
+        'password_confirmation' => 'potwierdzenie hasła',
+        'current_password' => 'obecne hasło',
+        'code' => 'kod weryfikacyjny',
+        'recovery_code' => 'kod odzyskiwania',
+        'credential' => 'klucz dostępu',
+    ],
+];

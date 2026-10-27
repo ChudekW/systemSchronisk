@@ -49,13 +49,15 @@ const { verify, isLoading, error, isSupported } = usePasskeyVerify({
                 <KeyRound v-else class="h-4 w-4" />
                 {{
                     isLoading
-                        ? (props.loadingLabel ?? 'Authenticating...')
-                        : (props.label ?? 'Sign in with a passkey')
+                        ? (props.loadingLabel ?? 'Logowanie…')
+                        : (props.label ?? 'Zaloguj się kluczem dostępu')
                 }}
             </Button>
 
             <div v-if="error" class="text-center">
-                <InputError :message="error" />
+                <InputError
+                    message="Nie udało się potwierdzić tożsamości kluczem dostępu. Spróbuj ponownie lub użyj hasła."
+                />
             </div>
         </div>
 
@@ -65,7 +67,7 @@ const { verify, isLoading, error, isSupported } = usePasskeyVerify({
             </div>
             <div class="relative flex justify-center text-xs uppercase">
                 <span class="bg-card px-2 text-muted-foreground">
-                    {{ props.separator ?? 'Or continue with email' }}
+                    {{ props.separator ?? 'lub użyj adresu e-mail' }}
                 </span>
             </div>
         </div>

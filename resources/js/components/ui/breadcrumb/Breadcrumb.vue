@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
   <nav
-    aria-label="breadcrumb"
+    aria-label="Ścieżka nawigacji"
     data-slot="breadcrumb"
     :class="props.class"
   >
