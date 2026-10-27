@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form, Head } from '@inertiajs/vue3';
 import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
 import Heading from '@/components/Heading.vue';
@@ -59,7 +60,10 @@ defineOptions({
                 class="max-w-xl space-y-5"
                 v-slot="{ errors, processing }"
             >
-                <div class="grid gap-2">
+                <div
+                    v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                    class="grid gap-2"
+                >
                     <Label for="current_password">Obecne hasło</Label>
                     <PasswordInput
                         id="current_password"
@@ -71,7 +75,10 @@ defineOptions({
                     <InputError :message="errors.current_password" />
                 </div>
 
-                <div class="grid gap-2">
+                <div
+                    v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                    class="grid gap-2"
+                >
                     <Label for="password">Nowe hasło</Label>
                     <PasswordInput
                         id="password"
@@ -84,7 +91,10 @@ defineOptions({
                     <InputError :message="errors.password" />
                 </div>
 
-                <div class="grid gap-2">
+                <div
+                    v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                    class="grid gap-2"
+                >
                     <Label for="password_confirmation">Potwierdź hasło</Label>
                     <PasswordInput
                         id="password_confirmation"

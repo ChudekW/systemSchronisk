@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form, Head } from '@inertiajs/vue3';
 import InputError from '@/components/InputError.vue';
 import PasswordInput from '@/components/PasswordInput.vue';
@@ -40,7 +41,10 @@ defineOptions({
         v-slot="{ errors, processing }"
     >
         <div class="space-y-6">
-            <div class="grid gap-2">
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
                 <Label htmlFor="password">Hasło</Label>
                 <PasswordInput
                     id="password"

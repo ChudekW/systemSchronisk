@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { router } from '@inertiajs/vue3';
 import { KeyRound } from '@lucide/vue';
 import type { Passkey } from '@/types/auth';
@@ -37,7 +38,10 @@ const handleRegisterSuccess = () => {
             description="Zarządzaj kluczami dostępu do logowania bez hasła."
         />
 
-        <div class="overflow-hidden rounded-lg border border-border">
+        <div
+            v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+            class="overflow-hidden rounded-lg border border-border"
+        >
             <template v-if="passkeys.length">
                 <PasskeyItem
                     v-for="passkey in passkeys"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form } from '@inertiajs/vue3';
 import { ShieldCheck } from '@lucide/vue';
 import { onUnmounted, ref } from 'vue';
@@ -28,7 +29,11 @@ onUnmounted(() => clearTwoFactorAuthData());
 </script>
 
 <template>
-    <div v-if="canManageTwoFactor" class="settings-card">
+    <div
+        v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+        v-if="canManageTwoFactor"
+        class="settings-card"
+    >
         <Heading
             variant="small"
             title="Weryfikacja dwuetapowa"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form, Head } from '@inertiajs/vue3';
 import InputError from '@/components/InputError.vue';
 import TextLink from '@/components/TextLink.vue';
@@ -34,7 +35,10 @@ defineProps<{
 
     <div class="space-y-6">
         <Form v-bind="email.form()" v-slot="{ errors, processing }">
-            <div class="grid gap-2">
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
                 <Label for="email">Adres e-mail</Label>
                 <Input
                     id="email"

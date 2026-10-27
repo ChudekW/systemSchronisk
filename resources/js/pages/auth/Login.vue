@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form, Head } from '@inertiajs/vue3';
 import InputError from '@/components/InputError.vue';
 import PasswordInput from '@/components/PasswordInput.vue';
@@ -45,7 +46,10 @@ defineProps<{
         class="flex flex-col gap-6"
     >
         <div class="grid gap-6">
-            <div class="grid gap-2">
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
                 <Label for="email">Adres e-mail</Label>
                 <Input
                     id="email"
@@ -60,7 +64,10 @@ defineProps<{
                 <InputError :message="errors.email" />
             </div>
 
-            <div class="grid gap-2">
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
                 <div class="flex items-center justify-between">
                     <Label for="password">Hasło</Label>
                     <TextLink

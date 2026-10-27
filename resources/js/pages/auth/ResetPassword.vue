@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form, Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import InputError from '@/components/InputError.vue';
@@ -35,7 +36,10 @@ const inputEmail = ref(props.email);
         v-slot="{ errors, processing }"
     >
         <div class="grid gap-6">
-            <div class="grid gap-2">
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
                 <Label for="email">Adres e-mail</Label>
                 <Input
                     id="email"
@@ -49,7 +53,10 @@ const inputEmail = ref(props.email);
                 <InputError :message="errors.email" class="mt-2" />
             </div>
 
-            <div class="grid gap-2">
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
                 <Label for="password">Hasło</Label>
                 <PasswordInput
                     id="password"
@@ -63,7 +70,10 @@ const inputEmail = ref(props.email);
                 <InputError :message="errors.password" />
             </div>
 
-            <div class="grid gap-2">
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
                 <Label for="password_confirmation"> Potwierdź hasło </Label>
                 <PasswordInput
                     id="password_confirmation"

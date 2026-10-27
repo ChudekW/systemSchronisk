@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import type { UrlMethodPair } from '@inertiajs/core';
 import { router } from '@inertiajs/vue3';
 import { usePasskeyVerify } from '@laravel/passkeys/vue';
@@ -37,7 +38,10 @@ const { verify, isLoading, error, isSupported } = usePasskeyVerify({
 
 <template>
     <div v-if="isSupported">
-        <div class="grid gap-2">
+        <div
+            v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+            class="grid gap-2"
+        >
             <Button
                 type="button"
                 variant="outline"

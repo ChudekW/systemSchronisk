@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { usePasskeyRegister } from '@laravel/passkeys/vue';
 import { ref } from 'vue';
 import InputError from '@/components/InputError.vue';
@@ -60,46 +61,56 @@ const handleCancel = () => {
 </script>
 
 <template>
-    <div v-if="!isSupported" class="text-sm text-muted-foreground">
-        Ta przeglądarka nie obsługuje kluczy dostępu.
-    </div>
+    <div v-auto-animate="{ duration: 180, easing: 'ease-out' }">
+        <div v-if="!isSupported" class="text-sm text-muted-foreground">
+            Ta przeglądarka nie obsługuje kluczy dostępu.
+        </div>
 
-    <Button v-else-if="!showForm" variant="outline" @click="showForm = true">
-        Dodaj klucz dostępu
-    </Button>
+        <Button
+            v-else-if="!showForm"
+            variant="outline"
+            @click="showForm = true"
+        >
+            Dodaj klucz dostępu
+        </Button>
 
-    <form
-        v-else
-        @submit="handleSubmit"
-        class="space-y-4 rounded-lg border border-border bg-muted/50 p-4"
-    >
-        <div class="grid gap-2">
-            <Label for="passkey-name">Nazwa klucza dostępu</Label>
-            <Input
-                id="passkey-name"
-                type="text"
-                v-model="name"
-                placeholder="np. Mój laptop, Mój telefon"
-                class="mt-1 block w-full border-foreground/20"
-                v-focus
+        <form
+            v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+            v-else
+            @submit="handleSubmit"
+            class="space-y-4 rounded-lg border border-border bg-muted/50 p-4"
+        >
+            <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                class="grid gap-2"
+            >
+                <Label for="passkey-name">Nazwa klucza dostępu</Label>
+                <Input
+                    id="passkey-name"
+                    type="text"
+                    v-model="name"
+                    placeholder="np. Mój laptop, Mój telefon"
+                    class="mt-1 block w-full border-foreground/20"
+                    v-focus
+                />
+                <p class="text-xs text-muted-foreground">
+                    Nadaj nazwę, która pomoże Ci rozpoznać ten klucz.
+                </p>
+            </div>
+
+            <InputError
+                v-if="error"
+                message="Nie udało się dodać klucza dostępu. Spróbuj ponownie i zatwierdź operację na swoim urządzeniu."
             />
-            <p class="text-xs text-muted-foreground">
-                Nadaj nazwę, która pomoże Ci rozpoznać ten klucz.
-            </p>
-        </div>
 
-        <InputError
-            v-if="error"
-            message="Nie udało się dodać klucza dostępu. Spróbuj ponownie i zatwierdź operację na swoim urządzeniu."
-        />
-
-        <div class="flex gap-2">
-            <Button type="submit" :disabled="isLoading || !name.trim()">
-                {{ isLoading ? 'Zapisywanie…' : 'Zapisz klucz dostępu' }}
-            </Button>
-            <Button type="button" variant="ghost" @click="handleCancel">
-                Anuluj
-            </Button>
-        </div>
-    </form>
+            <div class="flex gap-2">
+                <Button type="submit" :disabled="isLoading || !name.trim()">
+                    {{ isLoading ? 'Zapisywanie…' : 'Zapisz klucz dostępu' }}
+                </Button>
+                <Button type="button" variant="ghost" @click="handleCancel">
+                    Anuluj
+                </Button>
+            </div>
+        </form>
+    </div>
 </template>

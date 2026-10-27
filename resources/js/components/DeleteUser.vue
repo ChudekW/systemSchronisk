@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form } from '@inertiajs/vue3';
 import { useTemplateRef } from 'vue';
 import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
@@ -61,7 +62,13 @@ const passwordInput = useTemplateRef('passwordInput');
                             </DialogDescription>
                         </DialogHeader>
 
-                        <div class="grid gap-2">
+                        <div
+                            v-auto-animate="{
+                                duration: 180,
+                                easing: 'ease-out',
+                            }"
+                            class="grid gap-2"
+                        >
                             <Label for="password" class="sr-only">Hasło</Label>
                             <PasswordInput
                                 id="password"

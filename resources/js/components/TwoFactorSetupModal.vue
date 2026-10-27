@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form } from '@inertiajs/vue3';
 import { useClipboard } from '@vueuse/core';
 import { Check, Copy, ScanLine } from '@lucide/vue';
@@ -150,6 +151,7 @@ watch(
             </DialogHeader>
 
             <div
+                v-auto-animate="{ duration: 180, easing: 'ease-out' }"
                 class="relative flex w-auto flex-col items-center justify-center space-y-5"
             >
                 <template v-if="!showVerificationStep">

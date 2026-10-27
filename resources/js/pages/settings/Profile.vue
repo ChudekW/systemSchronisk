@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form, Head, usePage } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
@@ -45,7 +46,10 @@ const user = computed(() => page.props.auth.user);
                 class="max-w-xl space-y-5"
                 v-slot="{ errors, processing }"
             >
-                <div class="grid gap-2">
+                <div
+                    v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                    class="grid gap-2"
+                >
                     <Label for="name">Imię i nazwisko</Label>
                     <Input
                         id="name"
@@ -59,7 +63,10 @@ const user = computed(() => page.props.auth.user);
                     <InputError class="mt-2" :message="errors.name" />
                 </div>
 
-                <div class="grid gap-2">
+                <div
+                    v-auto-animate="{ duration: 180, easing: 'ease-out' }"
+                    class="grid gap-2"
+                >
                     <Label for="email">Adres e-mail</Label>
                     <Input
                         id="email"

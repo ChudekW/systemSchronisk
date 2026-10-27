@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vAutoAnimate } from '@formkit/auto-animate';
 import { Form, Head, setLayoutProps } from '@inertiajs/vue3';
 import { computed, ref, watchEffect } from 'vue';
 import InputError from '@/components/InputError.vue';
@@ -49,7 +50,7 @@ const toggleRecoveryMode = (clearErrors: () => void): void => {
 <template>
     <Head title="Weryfikacja dwuetapowa" />
 
-    <div class="space-y-6">
+    <div v-auto-animate="{ duration: 180 }" class="space-y-6">
         <template v-if="!showRecoveryInput">
             <Form
                 v-bind="store.form()"
@@ -60,6 +61,7 @@ const toggleRecoveryMode = (clearErrors: () => void): void => {
             >
                 <input type="hidden" name="code" :value="code" />
                 <div
+                    v-auto-animate="{ duration: 180 }"
                     class="flex flex-col items-center justify-center space-y-3 text-center"
                 >
                     <div class="flex w-full items-center justify-center">
