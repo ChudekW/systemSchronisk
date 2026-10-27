@@ -28,78 +28,84 @@ const user = computed(() => page.props.auth.user);
 </script>
 
 <template>
-    <Head title="Ustawienia profilu" />
+    <div class="space-y-6">
+        <Head title="Ustawienia profilu" />
 
-    <h1 class="sr-only">Ustawienia profilu</h1>
+        <h2 class="sr-only">Ustawienia profilu</h2>
 
-    <div class="flex flex-col space-y-6">
-        <Heading
-            variant="small"
-            title="Profil"
-            description="Zaktualizuj swoje imię, nazwisko i adres e-mail."
-        />
+        <div class="settings-card">
+            <Heading
+                variant="small"
+                title="Profil"
+                description="Zaktualizuj swoje imię, nazwisko i adres e-mail."
+            />
 
-        <Form
-            v-bind="ProfileController.update.form()"
-            class="space-y-6"
-            v-slot="{ errors, processing }"
-        >
-            <div class="grid gap-2">
-                <Label for="name">Imię i nazwisko</Label>
-                <Input
-                    id="name"
-                    class="mt-1 block w-full"
-                    name="name"
-                    :default-value="user.name"
-                    required
-                    autocomplete="name"
-                    placeholder="Imię i nazwisko"
-                />
-                <InputError class="mt-2" :message="errors.name" />
-            </div>
+            <Form
+                v-bind="ProfileController.update.form()"
+                class="max-w-xl space-y-5"
+                v-slot="{ errors, processing }"
+            >
+                <div class="grid gap-2">
+                    <Label for="name">Imię i nazwisko</Label>
+                    <Input
+                        id="name"
+                        class="mt-1 block w-full"
+                        name="name"
+                        :default-value="user.name"
+                        required
+                        autocomplete="name"
+                        placeholder="Imię i nazwisko"
+                    />
+                    <InputError class="mt-2" :message="errors.name" />
+                </div>
 
-            <div class="grid gap-2">
-                <Label for="email">Adres e-mail</Label>
-                <Input
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    name="email"
-                    :default-value="user.email"
-                    required
-                    autocomplete="username"
-                    placeholder="Adres e-mail"
-                />
-                <InputError class="mt-2" :message="errors.email" />
-            </div>
-
-            <div v-if="page.props.mustVerifyEmail && !user.email_verified_at">
-                <p class="-mt-4 text-sm text-muted-foreground">
-                    Twój adres e-mail nie został jeszcze potwierdzony.
-                    <Link
-                        :href="send()"
-                        as="button"
-                        class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
-                    >
-                        Wyślij ponownie link weryfikacyjny.
-                    </Link>
-                </p>
+                <div class="grid gap-2">
+                    <Label for="email">Adres e-mail</Label>
+                    <Input
+                        id="email"
+                        type="email"
+                        class="mt-1 block w-full"
+                        name="email"
+                        :default-value="user.email"
+                        required
+                        autocomplete="username"
+                        placeholder="Adres e-mail"
+                    />
+                    <InputError class="mt-2" :message="errors.email" />
+                </div>
 
                 <div
-                    v-if="page.props.status === 'verification-link-sent'"
-                    class="mt-2 text-sm font-medium text-green-600"
+                    v-if="page.props.mustVerifyEmail && !user.email_verified_at"
                 >
-                    Wysłaliśmy nowy link weryfikacyjny na Twój adres e-mail.
+                    <p class="-mt-4 text-sm text-muted-foreground">
+                        Twój adres e-mail nie został jeszcze potwierdzony.
+                        <Link
+                            :href="send()"
+                            as="button"
+                            class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
+                        >
+                            Wyślij ponownie link weryfikacyjny.
+                        </Link>
+                    </p>
+
+                    <div
+                        v-if="page.props.status === 'verification-link-sent'"
+                        class="mt-2 text-sm font-medium text-green-600"
+                    >
+                        Wysłaliśmy nowy link weryfikacyjny na Twój adres e-mail.
+                    </div>
                 </div>
-            </div>
 
-            <div class="flex items-center gap-4">
-                <Button :disabled="processing" data-test="update-profile-button"
-                    >Zapisz zmiany</Button
-                >
-            </div>
-        </Form>
+                <div class="flex items-center gap-4 border-t pt-5">
+                    <Button
+                        :disabled="processing"
+                        data-test="update-profile-button"
+                        >Zapisz zmiany</Button
+                    >
+                </div>
+            </Form>
+        </div>
+
+        <DeleteUser />
     </div>
-
-    <DeleteUser />
 </template>

@@ -28,7 +28,7 @@ onUnmounted(() => clearTwoFactorAuthData());
 </script>
 
 <template>
-    <div v-if="canManageTwoFactor" class="space-y-6">
+    <div v-if="canManageTwoFactor" class="settings-card">
         <Heading
             variant="small"
             title="Weryfikacja dwuetapowa"

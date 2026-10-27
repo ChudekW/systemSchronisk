@@ -22,16 +22,14 @@ const passwordInput = useTemplateRef('passwordInput');
 </script>
 
 <template>
-    <div class="space-y-6">
+    <div class="settings-card border-destructive/20">
         <Heading
             variant="small"
             title="Usuń konto"
             description="Trwale usuń swoje konto i powiązane z nim dane."
         />
-        <div
-            class="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10"
-        >
-            <div class="relative space-y-0.5 text-red-600 dark:text-red-100">
+        <div class="space-y-4 rounded-xl bg-destructive/5 p-4">
+            <div class="relative space-y-1 text-destructive">
                 <p class="font-medium">Uwaga</p>
                 <p class="text-sm">Tej operacji nie można cofnąć.</p>
             </div>

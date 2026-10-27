@@ -180,6 +180,7 @@
 
 @layer base {
     html {
+        scrollbar-gutter: stable;
         color-scheme: light;
     }
 
@@ -200,6 +201,29 @@
 /* Keep the application shell still while the next page comes into view. */
 .page-transition-content {
     view-transition-name: page-content;
+}
+
+/* Shared settings elements get their own snapshots outside the page animation. */
+.settings-transition-header {
+    view-transition-name: settings-header;
+}
+
+.settings-transition-navigation {
+    view-transition-name: settings-navigation;
+}
+
+::view-transition-group(settings-header),
+::view-transition-group(settings-navigation),
+::view-transition-new(settings-header),
+::view-transition-new(settings-navigation) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(settings-header),
+::view-transition-old(settings-navigation) {
+    animation: none;
+    opacity: 0;
 }
 
 ::view-transition-group(root),
@@ -269,5 +293,19 @@ html #nprogress .peg {
     html #nprogress .bar,
     html #nprogress .peg {
         transition: none !important;
+    }
+}
+
+@layer components {
+    .settings-card {
+        @apply space-y-6 rounded-2xl border bg-card p-5 text-card-foreground sm:p-7;
+    }
+
+    .settings-card > header {
+        @apply space-y-2;
+    }
+
+    .settings-card > header h2 {
+        @apply text-lg font-bold;
     }
 }

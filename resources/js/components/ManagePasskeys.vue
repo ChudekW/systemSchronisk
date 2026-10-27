@@ -30,7 +30,7 @@ const handleRegisterSuccess = () => {
 </script>
 
 <template>
-    <div v-if="canManagePasskeys" class="space-y-6">
+    <div v-if="canManagePasskeys" class="settings-card">
         <Heading
             variant="small"
             title="Klucze dostępu"
