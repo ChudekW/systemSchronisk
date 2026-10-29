@@ -69,8 +69,9 @@ services:
     meilisearch:
         image: 'getmeili/meilisearch:latest'
         ports:
-            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
+            - '127.0.0.1:${FORWARD_MEILISEARCH_PORT:-7700}:7700'
         environment:
+            MEILI_MASTER_KEY: '${MEILISEARCH_KEY:?Set MEILISEARCH_KEY in .env}'
             MEILI_NO_ANALYTICS: '${MEILISEARCH_NO_ANALYTICS:-false}'
             MEILI_UPGRADE_DB: '${MEILISEARCH_UPGRADE_DB:-true}'
         volumes:
@@ -86,6 +87,24 @@ services:
                 - 'http://127.0.0.1:7700/health'
             retries: 3
             timeout: 5s
+    scout-worker:
+        image: 'sail-8.5/app'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+        command: ['php', 'artisan', 'queue:work', '--queue=scout', '--sleep=1', '--tries=3', '--backoff=10', '--timeout=60']
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            pgsql:
+                condition: service_healthy
+            redis:
+                condition: service_healthy
+            meilisearch:
+                condition: service_healthy
+        restart: unless-stopped
     mailpit:
         image: 'axllent/mailpit:latest'
         ports:

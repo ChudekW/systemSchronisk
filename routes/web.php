@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\TenantOrganizationController;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,8 @@ Route::middleware(['auth', 'verified', 'can:manage-own-organization'])->group(fu
 });
 
 require __DIR__.'/settings.php';
+
+Route::middleware(['auth', 'verified', 'can:manage-animals'])->group(function () {
+    Route::get('animals/{animal}/photo', [AnimalController::class, 'photo'])->name('animals.photo');
+    Route::resource('animals', AnimalController::class)->except('destroy');
+});

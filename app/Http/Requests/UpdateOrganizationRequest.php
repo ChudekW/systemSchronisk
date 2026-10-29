@@ -11,6 +11,7 @@ class UpdateOrganizationRequest extends FormRequest
         return $this->user()->can('manage-organizations') || $this->user()->can('manage-own-organization');
     }
 
+    /** @return array<string, array<int, string>> */
     public function rules(): array
     {
         return [

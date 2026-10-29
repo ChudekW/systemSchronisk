@@ -327,6 +327,14 @@ html #nprogress .peg {
 }
 
 @layer components {
+    .animal-select {
+        @apply h-10 w-full min-w-0 rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring;
+    }
+
+    .animal-textarea {
+        @apply w-full min-w-0 rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring;
+    }
+
     .settings-card {
         @apply space-y-6 rounded-2xl border bg-card p-5 text-card-foreground sm:p-7;
     }

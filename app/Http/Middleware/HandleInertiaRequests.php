@@ -41,6 +41,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
                 'canManageOrganizations' => $request->user()?->can('manage-organizations') ?? false,
+                'canManageAnimals' => $request->user()?->can('manage-animals') ?? false,
                 'canManageOrganization' => $request->user()?->can('manage-own-organization') ?? false,
                 'organization' => $request->user()?->organization?->only(['id', 'name', 'shelter_name', 'is_active']),
             ],

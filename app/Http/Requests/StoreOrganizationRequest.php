@@ -17,6 +17,7 @@ class StoreOrganizationRequest extends FormRequest
         $this->merge(['admin_email' => strtolower(trim((string) $this->input('admin_email')))]);
     }
 
+    /** @return array<string, array<int, string|Password>> */
     public function rules(): array
     {
         return [

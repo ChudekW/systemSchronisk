@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Animal;
 use App\Models\User;
 use Carbon\CarbonImmutable;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -26,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        Gate::define('manage-animals', fn (User $user): bool => ! $user->is_super_admin && $user->organization?->is_active === true);
+        Gate::define('access-animal', fn (User $user, Animal $animal): Response => $user->can('manage-animals') && $user->organization_id === $animal->organization_id
+            ? Response::allow()
+            : Response::denyAsNotFound());
         Gate::define('manage-organizations', fn (User $user): bool => $user->is_super_admin === true);
         Gate::define('manage-own-organization', fn (User $user): bool => ! $user->is_super_admin && $user->is_organization_admin && $user->organization?->is_active === true
         );

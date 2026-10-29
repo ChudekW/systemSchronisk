@@ -30,4 +30,10 @@ class Organization extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /** @return HasMany<Animal, $this> */
+    public function animals(): HasMany
+    {
+        return $this->hasMany(Animal::class);
+    }
 }

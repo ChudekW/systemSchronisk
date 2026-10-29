@@ -9,6 +9,7 @@ import {
 } from '@lucide/vue';
 import { Card } from '@/components/ui/card';
 import { dashboard } from '@/routes';
+import { index as animals } from '@/routes/animals';
 import { edit as editAppearance } from '@/routes/appearance';
 import { edit as editProfile } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
@@ -90,9 +91,22 @@ const accountLinks = [
                 <h2 id="workspace-title" class="text-lg font-bold">
                     Miejsce na codzienną pomoc
                 </h2>
-                <p class="text-sm leading-relaxed text-muted-foreground">
-                    Moduły zwierząt, zadań i adopcji są w przygotowaniu. Już
-                    teraz możesz zadbać o swój profil i ustawienia konta.
+                <template v-if="$page.props.auth.canManageAnimals">
+                    <p class="text-sm leading-relaxed text-muted-foreground">
+                        Kartoteka zwierząt jest gotowa. Dodawaj podopiecznych i
+                        uzupełniaj informacje potrzebne do codziennej opieki.
+                    </p>
+                    <Link
+                        :href="animals()"
+                        class="inline-flex items-center gap-2 text-sm font-medium text-primary"
+                        >Przejdź do zwierząt
+                        <ArrowRight class="size-4" aria-hidden="true"
+                    /></Link>
+                </template>
+                <p v-else class="text-sm leading-relaxed text-muted-foreground">
+                    Dostęp do kartoteki zwierząt mają konta przypisane do
+                    aktywnego schroniska. Tutaj możesz zadbać o swój profil i
+                    ustawienia konta.
                 </p>
             </div>
         </section>
