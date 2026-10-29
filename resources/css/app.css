@@ -198,10 +198,39 @@
     }
 }
 
+/* The root gutter already reserves scrollbar space. Reka adds inline body
+   padding during scroll lock; applying both would shift the entire page. */
+@supports (scrollbar-gutter: stable) {
+    body[style*='overflow: hidden'] {
+        padding-right: 0 !important;
+    }
+}
+
 /* Keep the application shell still while the next page comes into view. */
 .page-transition-content {
     isolation: isolate;
     view-transition-name: page-content;
+}
+
+/* Match only the public header and auth logo, not logos in the application shell. */
+.public-logo-transition {
+    view-transition-name: public-logo;
+}
+
+::view-transition-group(public-logo) {
+    z-index: 1;
+    animation-duration: 420ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(public-logo) {
+    animation: none;
+    opacity: 0;
+}
+
+::view-transition-new(public-logo) {
+    animation: none;
+    mix-blend-mode: normal;
 }
 
 /* Shared settings elements get their own snapshots outside the page animation. */

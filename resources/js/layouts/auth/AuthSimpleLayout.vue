@@ -18,7 +18,7 @@ defineProps<{
                 :href="home()"
                 class="rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
             >
-                <AppLogo />
+                <AppLogo class="public-logo-transition" />
             </Link>
             <p class="text-sm text-muted-foreground">
                 Wszystko dla lepszego życia zwierząt.

@@ -12,7 +12,7 @@ import { dashboard, login, register } from '@/routes';
         <header
             class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-6"
         >
-            <AppLogo />
+            <AppLogo class="public-logo-transition" />
             <nav aria-label="Konto" class="flex items-center gap-2">
                 <Button v-if="$page.props.auth.user" as-child>
                     <Link :href="dashboard()"
