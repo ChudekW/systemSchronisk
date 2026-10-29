@@ -101,7 +101,7 @@ const notes = computed(() => [
                     v-if="animal.has_photo"
                     :src="photo.url(animal.id)"
                     :alt="animal.name"
-                    class="h-full w-full object-cover"
+                    class="animal-photo-transition h-full w-full object-cover"
                 />
                 <div v-else class="space-y-3 text-center text-muted-foreground">
                     <PawPrint

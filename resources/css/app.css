@@ -233,6 +233,40 @@
     mix-blend-mode: normal;
 }
 
+.animal-photo-transition {
+    view-transition-name: animal-photo;
+}
+
+::view-transition-group(animal-photo) {
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 1rem;
+    animation-duration: 420ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Keep the loaded source image visible while the destination image loads. */
+::view-transition-old(animal-photo) {
+    height: 100%;
+    object-fit: cover;
+    animation: none;
+    opacity: 1;
+}
+
+::view-transition-new(animal-photo) {
+    animation: none;
+    opacity: 0;
+}
+
+::view-transition-old(animal-photo):only-child {
+    animation: 100ms ease-out both page-out;
+}
+
+::view-transition-new(animal-photo):only-child {
+    opacity: 1;
+    animation: 220ms ease-out both page-in;
+}
+
 /* Shared settings elements get their own snapshots outside the page animation. */
 .settings-transition-header {
     view-transition-name: settings-header;

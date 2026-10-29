@@ -18,6 +18,7 @@ defineOptions({
     layout: { breadcrumbs: [{ title: 'Zwierzęta', href: index() }] },
 });
 const search = ref(props.filters.search ?? '');
+const selectedAnimalId = ref<number | null>(null);
 const species = ref(props.filters.species ?? '');
 const status = ref(props.filters.status ?? '');
 function filter() {
@@ -150,6 +151,7 @@ function reset() {
                 v-for="animal in animals.data"
                 :key="animal.id"
                 :href="show(animal.id)"
+                @click="selectedAnimalId = animal.id"
                 class="group overflow-hidden rounded-2xl border bg-card transition-colors hover:border-primary/50 focus-visible:ring-2 focus-visible:ring-ring"
             >
                 <div
@@ -160,6 +162,12 @@ function reset() {
                         :src="photo.url(animal.id)"
                         :alt="animal.name"
                         class="h-full w-full object-cover"
+                        :style="{
+                            viewTransitionName:
+                                selectedAnimalId === animal.id
+                                    ? 'animal-photo'
+                                    : 'none',
+                        }"
                         loading="lazy"
                     />
                     <PawPrint
