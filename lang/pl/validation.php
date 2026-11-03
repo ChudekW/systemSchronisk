@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'decimal' => 'Pole :attribute musi mieć :decimal miejsc po przecinku.',
+    'prohibited' => 'Pole :attribute nie jest dozwolone dla wybranej opcji.',
+    'after_or_equal' => 'Pole :attribute nie może wskazywać wcześniejszej daty niż dozwolona.',
+    'before_or_equal' => 'Pole :attribute nie może wskazywać późniejszej daty niż dozwolona.',
+    'date_format' => 'Pole :attribute musi mieć format :format.',
+    'required_if' => 'Pole :attribute jest wymagane dla wybranej opcji.',
+    'required_with' => 'Uzupełnij pole :attribute dla wybranych danych.',
+    'required_without' => 'Uzupełnij pole :attribute, jeśli nie podano danych alternatywnych.',
+    'extensions' => 'Plik :attribute musi mieć jedno z rozszerzeń: :values.',
+    'mimes' => 'Plik :attribute musi mieć jeden z formatów: :values.',
     'accepted' => 'Zaakceptuj pole :attribute.',
     'array' => 'Pole :attribute musi być listą.',
     'boolean' => 'Pole :attribute musi mieć wartość tak lub nie.',

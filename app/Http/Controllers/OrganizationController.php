@@ -34,6 +34,7 @@ class OrganizationController extends Controller
             $user->email = $request->validated('admin_email');
             $user->password = $request->validated('admin_password');
             $user->is_organization_admin = true;
+            $user->organization_role = 'admin';
             $user->organization()->associate($organization);
             $user->save();
 

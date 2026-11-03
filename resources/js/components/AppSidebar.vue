@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { Building2, LayoutGrid, PawPrint } from '@lucide/vue';
+import { Building2, LayoutGrid, PawPrint, Users } from '@lucide/vue';
+import { index as adoptions } from '@/routes/adoptions';
+import { ClipboardList, HeartHandshake } from '@lucide/vue';
+import { index as careTasks } from '@/routes/tasks';
+import { index as team } from '@/routes/team';
 import { index as animals } from '@/routes/animals';
 import { computed } from 'vue';
 import { index as organizations } from '@/routes/organizations';
@@ -31,7 +35,16 @@ const mainNavItems = computed<NavItem[]>(() => [
         ? [{ title: 'Organizacje', href: organizations(), icon: Building2 }]
         : []),
     ...(page.props.auth.canManageAnimals
-        ? [{ title: 'Zwierzęta', href: animals(), icon: PawPrint }]
+        ? [
+              { title: 'Zwierzęta', href: animals(), icon: PawPrint },
+              { title: 'Moje zadania', href: careTasks(), icon: ClipboardList },
+          ]
+        : []),
+    ...(page.props.auth.canManageAnimals
+        ? [{ title: 'Adopcje', href: adoptions(), icon: HeartHandshake }]
+        : []),
+    ...(page.props.auth.canManageTeam
+        ? [{ title: 'Zespół', href: team(), icon: Users }]
         : []),
     ...(page.props.auth.canManageOrganization
         ? [

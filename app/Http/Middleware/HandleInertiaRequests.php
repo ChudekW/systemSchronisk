@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'auth' => [
                 'user' => $request->user(),
+                'canManageTeam' => $request->user()?->can('manage-team') ?? false,
                 'canManageOrganizations' => $request->user()?->can('manage-organizations') ?? false,
                 'canManageAnimals' => $request->user()?->can('manage-animals') ?? false,
                 'canManageOrganization' => $request->user()?->can('manage-own-organization') ?? false,

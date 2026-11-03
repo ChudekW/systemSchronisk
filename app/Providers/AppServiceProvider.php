@@ -28,13 +28,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
-        Gate::define('manage-animals', fn (User $user): bool => ! $user->is_super_admin && $user->organization?->is_active === true);
+        Gate::define('manage-animals', fn (User $user): bool => $user->is_active && ! $user->is_super_admin && $user->organization?->is_active === true);
         Gate::define('access-animal', fn (User $user, Animal $animal): Response => $user->can('manage-animals') && $user->organization_id === $animal->organization_id
             ? Response::allow()
             : Response::denyAsNotFound());
-        Gate::define('manage-organizations', fn (User $user): bool => $user->is_super_admin === true);
-        Gate::define('manage-own-organization', fn (User $user): bool => ! $user->is_super_admin && $user->is_organization_admin && $user->organization?->is_active === true
+        Gate::define('manage-organizations', fn (User $user): bool => $user->is_active && $user->is_super_admin === true);
+        Gate::define('manage-own-organization', fn (User $user): bool => $user->is_active && ! $user->is_super_admin && $user->is_organization_admin && $user->organization?->is_active === true
         );
+        Gate::define('manage-medical', fn (User $user): bool => $user->can('manage-animals') && in_array($user->teamRole(), ['admin', 'veterinarian'], true));
+        Gate::define('manage-team', fn (User $user): bool => $user->can('manage-own-organization'));
     }
 
     /**

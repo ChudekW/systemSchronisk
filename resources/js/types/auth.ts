@@ -11,6 +11,7 @@ export type User = {
 };
 
 export type Auth = {
+    canManageTeam: boolean;
     canManageAnimals: boolean;
     canManageOrganizations: boolean;
     canManageOrganization: boolean;

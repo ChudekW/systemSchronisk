@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import { PawPrint, Pencil, ArrowLeft } from '@lucide/vue';
 import { computed } from 'vue';
 import { Button } from '@/components/ui/button';
+import AnimalTabs from '@/components/AnimalTabs.vue';
 import { index, edit, photo } from '@/routes/animals';
 import type { Animal, AnimalOptions, Paginated } from '@/types/animal';
 const props = defineProps<{
@@ -93,6 +94,7 @@ const notes = computed(() => [
                 ></Button
             >
         </header>
+        <AnimalTabs :animal-id="animal.id" active="details" />
         <div class="grid items-start gap-6 lg:grid-cols-[1fr_2fr]">
             <div
                 class="flex aspect-square items-center justify-center overflow-hidden rounded-2xl border bg-accent/40"

@@ -183,3 +183,24 @@ Pozwoli to wykryć różnice w sposobie pracy i uniknąć budowy systemu dopasow
 - aplikacja mobilna działa przy chwilowym braku internetu;
 - organizacja może wyeksportować swoje dane.
 
+## Pomysły do rozważenia
+
+### 1. Dedykowane strony landing dla schronisk
+
+Każde schronisko mogłoby mieć własną publiczną stronę prezentującą organizację, jej podopiecznych oraz możliwości pomocy.
+
+- opis schroniska, zdjęcia i logo;
+- zwierzęta dostępne do adopcji;
+- informacje o adopcji, wolontariacie i bieżących potrzebach;
+- dane kontaktowe, lokalizacja i godziny odwiedzin.
+
+### 2. Strony „Poznaj mnie” dla zwierząt
+
+Dedykowana strona każdego zwierzęcia ułatwiająca poznanie jego historii, charakteru i potrzeb oraz udostępnianie profilu osobom zainteresowanym adopcją.
+
+- zdjęcia, imię i podstawowe informacje o zwierzęciu;
+- historia, usposobienie i opis odpowiedniego domu;
+- kontakt do schroniska i przejście do zgłoszenia adopcyjnego;
+- opcjonalnie: generowanie karty „Poznaj mnie” w PDF, do pobrania, udostępnienia lub wydruku, z kodem QR prowadzącym do aktualnego profilu.
+
+Pomysły pozostają do doprecyzowania i ustalenia priorytetu realizacji.
